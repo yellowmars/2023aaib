@@ -1,11 +1,12 @@
-N=len(s)
+ table={} #大括號: table[num]對應的次數
+        for num in nums: #每個數字輪一次
+            if num in table:#出現過的話
+                    table[num]+=1 #次數加1
+            else:
+                    table[num]=1 #第一次出現
+        #print(table)
         ans=0
-        for left in range(N-1): #要檢1留給右邊
-            #0....left left+1....N-1 左邊有幾個0，右邊有幾個1
-            now =0#現在答案
-            for i in range(N):
-                if i<=left and s[i]=='0': now+=1 #左邊的0
-                if i>left and s[i]=='1': now+=1 #右邊的0
-            if now > ans:ans=now #如果現在now比答案ans更大，更新答案
-        return ans
-        
+        for num in table: #把table裡的數字輪一次
+            if table[num]==2: #如果剛好出現2次
+                ans=ans^num #把答案，照題目需求 混起來
+        return ans        
